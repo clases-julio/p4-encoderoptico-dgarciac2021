@@ -17,8 +17,6 @@ io.setup(in2_pin, io.OUT)
 io.setup(button_pin, io.IN, pull_up_down=io.PUD_UP)
 io.setup(encoder_pin, io.IN, pull_up_down=io.PUD_UP)
 
-io.add_event_detect(encoder_pin, io.RISING, callback=callbackEncoder, bouncetime=100)
-
 io.output(in2_pin, False)
 motor = io.PWM(23, 100)
 motor.start(0)
@@ -28,6 +26,8 @@ counter = 0
 def callbackEncoder(channel):
     global counter
     counter += 1
+
+io.add_event_detect(encoder_pin, io.RISING, callback=callbackEncoder, bouncetime=1)
 
 def callbackExit(signal, frame): # signal and frame when the interrupt was executed.
     io.cleanup() # Clean GPIO resources before exit.
