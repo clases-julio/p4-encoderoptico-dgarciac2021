@@ -23,12 +23,11 @@ MOTOR = GPIO.PWM(23, 100)
 MOTOR.start(0)
 
 RPM_PRINT_TIMER = 0.250
-RPM_PRINT_PREV_TIME = 0
-COUNTER = 0
+pulseCounter = 0
 
 def callbackEncoder(channel):
-    global COUNTER
-    COUNTER += 1
+    global pulseCounter
+    pulseCounter += 1
 
 def driveMotor():
     if (not GPIO.input(button_pin)): MOTOR.ChangeDutyCycle(50)
@@ -39,10 +38,10 @@ def callbackExit(signal, frame): # signal and frame when the interrupt was execu
     sys.exit(0)
 
 def calculateRPM():
-    global COUNTER
+    global pulseCounter
     global RPM_PRINT_TIMER
 
-    return (COUNTER * 60) / RPM_PRINT_TIMER
+    return (pulseCounter * 60) / RPM_PRINT_TIMER
 
 def main():
 
@@ -50,12 +49,18 @@ def main():
 
     print("CTRL + C to exit!", end="\n\n")
 
+    global pulseCounter
+    rpmPrintPrevTime = 0
+
     while True:
-        if (time.time() - RPM_PRINT_PREV_TIME >= RPM_PRINT_TIMER):
+
+        driveMotor()
+
+        if (time.time() - rpmPrintPrevTime >= RPM_PRINT_TIMER):
             print("                                        ", end="\r")
             print("RPM: ", int(calculateRPM()), end="\r")
-            COUNTER = 0
-            RPM_PRINT_PREV_TIME = time.time()
+            pulseCounter = 0
+            rpmPrintPrevTime = time.time()
 
         signal.signal(signal.SIGINT, callbackExit) # callback for CTRL+C
 
