@@ -26,13 +26,23 @@ RPM_PRINT_TIMER = 0.250
 RPM_PRINT_PREV_TIME = 0
 COUNTER = 0
 
-def callbackEncoder(channel)
+def callbackEncoder(channel):
+    global COUNTER
+    COUNTER += 1
 
-def callbackExit(signal, frame)
+def driveMotor():
+    if (not GPIO.input(button_pin)): MOTOR.ChangeDutyCycle(50)
+    else: MOTOR.ChangeDutyCycle(0)
 
-def calculateRPM()
+def callbackExit(signal, frame): # signal and frame when the interrupt was executed.
+    GPIO.cleanup() # Clean GPIO resources before exit.
+    sys.exit(0)
 
-def driveMotor()
+def calculateRPM():
+    global COUNTER
+    global RPM_PRINT_TIMER
+
+    return (COUNTER * 60) / RPM_PRINT_TIMER
 
 def main():
 
@@ -48,24 +58,6 @@ def main():
             RPM_PRINT_PREV_TIME = time.time()
 
         signal.signal(signal.SIGINT, callbackExit) # callback for CTRL+C
-
-callbackEncoder(channel):
-    global COUNTER
-    COUNTER += 1
-
-driveMotor():
-    if (not GPIO.input(button_pin)): MOTOR.ChangeDutyCycle(50)
-    else: MOTOR.ChangeDutyCycle(0)
-
-callbackExit(signal, frame): # signal and frame when the interrupt was executed.
-    GPIO.cleanup() # Clean GPIO resources before exit.
-    sys.exit(0)
-
-calculateRPM():
-    global COUNTER
-    global RPM_PRINT_TIMER
-
-    return (COUNTER * 60) / RPM_PRINT_TIMER
 
 if __name__ == "__main__":
     main()
