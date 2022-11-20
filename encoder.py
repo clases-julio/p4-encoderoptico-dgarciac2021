@@ -21,6 +21,7 @@ io.output(in2_pin, False)
 motor = io.PWM(23, 100)
 motor.start(0)
 
+rpmPrintWD = 0.250
 counter = 0
 
 def callbackEncoder(channel):
@@ -33,13 +34,20 @@ def callbackExit(signal, frame): # signal and frame when the interrupt was execu
     io.cleanup() # Clean GPIO resources before exit.
     sys.exit(0)
 
-rpmPrintWD = 0.250
+def calculateRPM():
+    global counter
+    global rpmPrintWD
+
+    return (counter * 60) / rpmPrintWD
+
 rpmPrintPrevTime = 0
 
 while True:
     if (not io.input(button_pin)): motor.ChangeDutyCycle(50)
     else: motor.ChangeDutyCycle(0)
     if (time.time() - rpmPrintPrevTime >= rpmPrintWD):
+        print("                                     ", end="\r")
+        print("RPM: ", int(calculateRPM()), end="\r")
+        counter = 0
         rpmPrintPrevTime = time.time()
-        print(counter)
     signal.signal(signal.SIGINT, callbackExit) # callback for CTRL+C
