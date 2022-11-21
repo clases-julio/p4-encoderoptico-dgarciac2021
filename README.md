@@ -66,6 +66,10 @@ while True:
 
 This whole snippet is a port from the *[blink without delay](https://www.arduino.cc/en/Tutorial/BuiltInExamples/BlinkWithoutDelay)* example for Arduino based boards. Basically it sets a time milestone and checks for the internal timer continously. Once the result of substract the last milestone to the current time matches a given time, we do whatever is pretended and refresh the milestone to the current time. This is how you can keep track of time on different procedures without blocking the code execution.
 
+Pretend this timer is actually a human being. He is looking at a wall clock with two numbers drawn on both of his hands. In one of them he has the last time when I asked him for the timer and he answer *Yes, the time has expired* and in the other hand he has the time I would like to keep track of. Once I tell him *Start counting!* he will calculate if the current time minus the time when I last said to him *Start counting!* (The time written of its hand) matches the number written on his other hand. I will ask him if that time arrived as fast as my hardware allows me. Eventually, that time will arrive and as soon as I ask him he will say *Yes! The time expired!* and thats the signal I need to do whatever the *heck* I need without taking care of the clock or neglect other tasks. Once I'm done with that timed task, I can say to my personal clock watcher *Start counting again!* and the cycle will continue for ever.
+
+Now pretend this humang being never existed and it always have been yourself, with your hands written and your own wall clock!
+
 ## Circuit testing
 
 This is the result! Pretty nice, isn't it?
