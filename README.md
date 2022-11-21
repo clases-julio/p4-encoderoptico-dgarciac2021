@@ -13,11 +13,15 @@ However the use of this holder was not that straight-forward, since apparently *
 
 You can see how different materials behave with infrared radiation in this [video](https://www.youtube.com/watch?v=fpx7hsoYEt4), but with this frame you can get the idea:
 
-![Infrared vs Visisble light through plastic](infraredVSvisible.png)
+![Infrared vs Visisble light through plastic](./doc/img/infraredVSvisible.png)
 
 Fortunately, the solution for us was just use another brand of filament that can actually block the infrared light due to the pigments and impurities that the manufacturer added during the manufacturing process. That is why in the final images a different wheel is finally used. However this is not a practical solutions since it requires of an extensive trial/error process. It is also not consistent due to the same color can show differents behaviour between brands, or even different colors of the same manufacturer could be completly different on this terms.
 
 Another consistent solution could be simply mask the wheel with some reflective material, like aluminum tape or similar. You can find all the 3D files [here.](https://github.com/clases-julio/p4-encoderoptico-dgarciac2021/tree/main/res/models)
+
+### Holder Assembly instructions
+
+You will only need four zip ties with **less than 4mm width**. There are two smaller pieces which are used to clamp the ITR8102 to the base with the help of two zip ties. The rest of them are for fix the motor in place as shown in the images above. The spinning wheel relies on press fit and nothing more.
 
 ## Circuit Assembly
 
