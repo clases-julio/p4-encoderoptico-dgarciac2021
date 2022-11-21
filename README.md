@@ -1,6 +1,6 @@
 # P4-encoderOptico
 
-This exercise consists on read the RPM of a spinning wheel using software [interruptions](https://github.com/clases-julio/p3-interruptions-dgarciac2021/wiki/Interrupt). For this particular exercise, we are using a DC motor attached to a custom-designed holder to rotate the wheel. Furthermore, in order to drive such motor an additional driver is added to the circuit. You might want to take a look on the wiki, since there is info of everything involved on this project. From the motor to the motor to the driver.
+This exercise consists on read the RPM of a spinning wheel using software [interruptions](https://github.com/clases-julio/p3-interruptions-dgarciac2021/wiki/Interrupt). For this particular exercise, we are using a [DC motor](https://github.com/clases-julio/p4-encoderoptico-dgarciac2021/wiki/DC-Motor) attached to a custom-designed holder to rotate the wheel. Furthermore, in order to drive such motor an additional [driver](https://github.com/clases-julio/p4-encoderoptico-dgarciac2021/wiki/L293D) is added to the circuit. You might want to take a look on the wiki, since there is info of everything involved on this project. From the motor to the [sensor](https://github.com/clases-julio/p4-encoderoptico-dgarciac2021/wiki/ITR8102) to the [infrared radiation!](https://github.com/clases-julio/p4-encoderoptico-dgarciac2021/wiki/Infrared-Radiation)
 
 ## Motor Holder
 
@@ -26,6 +26,8 @@ You will only need four zip ties with **less than 4mm width**. There are two sma
 ## Circuit Assembly
 
 With the addition of the DC motor driver, wiring could became a little bit messy and more complex than previous exercises. We are using one [button](https://github.com/clases-julio/p3-interruptions-dgarciac2021/wiki/Button), one driver, one 330Ω resistor and the ITR8102 sensor provided with out Raspberry Pi kits.[^1]
+
+The electrical principle consists on whenever the sensor detects the light of the emitter, it will short the given GPIO to ground, switching its state from `HIGH` to `LOW`.
 
 This is an schematic made with [Fritzing](https://fritzing.org/):
 
