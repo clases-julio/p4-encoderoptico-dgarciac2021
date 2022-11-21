@@ -15,7 +15,7 @@ You can see how different materials behave with infrared radiation in this [vide
 
 ![Infrared vs Visisble light through plastic](./doc/img/infraredVSvisible.png)
 
-Fortunately, the solution for us was just use another brand of filament that can actually block the infrared light due to the pigments and impurities that the manufacturer added during the manufacturing process. That is why in the final images a different wheel is finally used. However this is not a practical solutions since it requires of an extensive trial/error process. It is also not consistent due to the same color can show differents behaviour between brands, or even different colors of the same manufacturer could be completly different on this terms.
+Fortunately, the solution for us was just use another brand of filament that can actually block the infrared light due to the pigments and impurities that the manufacturer added during the manufacturing process. That is why in the final images a different wheel is finally used. However this is not a practical solution since it requires of an extensive trial/error process. It is also not consistent due to the same color can show differents behaviour between brands, or even different colors of the same manufacturer could be completly different on this terms.
 
 Another consistent solution could be simply mask the wheel with some reflective material, like aluminum tape or similar. You can find all the 3D files [here.](https://github.com/clases-julio/p4-encoderoptico-dgarciac2021/tree/main/res/models)
 
@@ -38,6 +38,33 @@ And this is the real circuit!
 ## Code
 
 We would like to highlight some remarkable aspects from our code.
+
+```python3
+print("CTRL + C to exit!", end="\n\n")
+```
+
+The end of each `print` command could be customized to our needs, in this case leaving a blank line after print the message. `\r` means *Carriage Return*, which sets the printer cursor at the beginning of the terminal line. Once there you can overwrite the output and thus create the ilusion of a live output.
+
+```python3
+print("RPM: ", int(calculateRPM()), end="\r")
+```
+
+```python3
+global var
+```
+
+The `global` label will link any local variable to its homonymous global variable. Although this is usually a bad practise, we were searching for simplicity in this case.
+
+```python3
+RPM_PRINT_TIMER = 0.250
+rpmPrintPrevTime = 0
+
+while True:
+	if (time.time() - rpmPrintPrevTime >= RPM_PRINT_TIMER):
+		rpmPrintPrevTime = time.time()
+```
+
+This whole snippet is a port from the *[blink without delay](https://www.arduino.cc/en/Tutorial/BuiltInExamples/BlinkWithoutDelay)* example for Arduino based boards. Basically it sets a time milestone and checks for the internal timer continously. Once the result of substract the last milestone to the current time matches a given time, we do whatever is pretended and refresh the milestone to the current time. This is how you can keep track of time on different procedures without blocking the code execution.
 
 ## Circuit testing
 
