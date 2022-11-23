@@ -25,7 +25,7 @@ You will only need four zip ties with **less than 4mm width**. There are two sma
 
 ## Circuit Assembly
 
-With the addition of the DC motor driver, wiring could became a little bit messy and more complex than previous exercises. We are using one [button](https://github.com/clases-julio/p3-interruptions-dgarciac2021/wiki/Button), one driver, one 330Ω resistor and the ITR8102 sensor provided with out Raspberry Pi kits.[^1]
+With the addition of the DC motor driver, wiring could became a little bit messy and more complex than previous exercises. We are using one [button](https://github.com/clases-julio/p3-interruptions-dgarciac2021/wiki/Button), one driver, one 330Ω resistor and the ITR8102 sensor provided with our Raspberry Pi kits.[^1]
 
 The electrical principle consists on whenever the sensor detects the light of the emitter, it will short the given GPIO to ground, switching its state from `HIGH` to `LOW`.
 
@@ -45,7 +45,7 @@ We would like to highlight some remarkable aspects from our code.
 print("CTRL + C to exit!", end="\n\n")
 ```
 
-The end of each `print` command could be customized to our needs, in this case leaving a blank line after print the message. `\r` means *Carriage Return*, which sets the printer cursor at the beginning of the terminal line. Once there you can overwrite the output and thus create the ilusion of a live output.
+The end of each `print` command could be customized to our needs, in this case leaving a blank line after printing the message. `\r` means *Carriage Return*, which sets the printer cursor at the beginning of the terminal line. Once there you can overwrite the output and thus create the ilusion of a live output.
 
 ```python3
 print("RPM: ", int(calculateRPM()), end="\r")
